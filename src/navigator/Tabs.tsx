@@ -1,12 +1,12 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ProtectedScreen from '../screens/ProtectedScreen';
-import { PerfilScreen } from '../screens/PerfilScreen';
+import { ProductsNavigator } from './ProductsNavigator';
 import { Platform } from 'react-native';
 import { Colores } from '../theme/loginTheme';
-import { Productos } from '../screens/Productos';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { DashboardNavigator } from './DashboardNavigator';
+import { PerfilNavigator } from './PerfilNavigator';
 
 export const Tabs = () => {
   return Platform.OS === 'ios'
@@ -36,15 +36,15 @@ const TabsAndroid = () => {
       tabBarIcon: ({color}) => {
         let iconName: string = '';
         switch (route.name) {
-            case 'ProtectedScreen' :
+            case 'DashboardNavigator' :
                 iconName = 'speedometer-outline';
             break;
 
-            case 'PerfilScreen' :
+            case 'PerfilNavigator' :
                 iconName = 'person-outline';
             break;
 
-            case 'Productos' :
+            case 'ProductsNavigator' :
                 iconName = 'file-tray-full-outline';
             break;
         }
@@ -52,9 +52,10 @@ const TabsAndroid = () => {
       },
   })}
     >
-      <BottomTabAndroid.Screen name="ProtectedScreen" options={{title: 'Dashboard'}} component={ProtectedScreen} />
-      <BottomTabAndroid.Screen name="PerfilScreen" options={{title: 'Perfil'}} component={PerfilScreen} />
-      <BottomTabAndroid.Screen name="Productos" component={Productos} />
+      <BottomTabAndroid.Screen name="DashboardNavigator" options={{title: 'Dashboard'}} component={DashboardNavigator} />
+      <BottomTabAndroid.Screen name="PerfilNavigator" options={{title: 'Perfil'}} component={PerfilNavigator} />
+      <BottomTabAndroid.Screen name="ProductsNavigator" options={{title: 'Productos'}} component={ProductsNavigator} />
+
     </BottomTabAndroid.Navigator>
   );
 };
@@ -83,11 +84,11 @@ const BottomTabIos = createBottomTabNavigator();
                 iconName = 'speedometer-outline';
             break;
 
-            case 'PerfilScreen' :
+            case 'PerfilNavigator' :
                 iconName = 'person-outline';
             break;
 
-            case 'Productos' :
+            case 'DashboardNavigator' :
                 iconName = 'file-tray-full-outline';
             break;
         }
@@ -95,9 +96,9 @@ const BottomTabIos = createBottomTabNavigator();
       },
   })}
     >
-      <BottomTabIos.Screen name="ProtectedScreen" options={{title: 'Dashboard'}} component={ProtectedScreen} />
-      <BottomTabIos.Screen name="PerfilScreen" options={{title: 'Perfil'}} component={PerfilScreen} />
-      <BottomTabIos.Screen name="Productos" options={{title: 'Productos'}} component={Productos} />
+      <BottomTabIos.Screen name="DashboardNavigator" options={{title: 'Dashboard'}} component={DashboardNavigator} />
+      <BottomTabIos.Screen name="PerfilNavigator" options={{title: 'Perfil'}} component={PerfilNavigator} />
+      <BottomTabAndroid.Screen name="ProductsNavigator" options={{title: 'Productos'}} component={ProductsNavigator} />
 
     </BottomTabIos.Navigator>
   );

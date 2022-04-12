@@ -1,35 +1,14 @@
-import React, { useContext } from 'react';
-import { Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native';
+import React from 'react';
+import { Text, TextInput, View, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { Background } from '../components/Background';
 import { WhiteLogo } from '../components/WhiteLogo';
 import { loginStyles } from '../theme/loginTheme';
-import { useForm } from '../hooks/useForm';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthContext } from '../context/AuthContext';
-import {useEffect} from 'react';
 
 interface Props extends StackScreenProps<any, any>{}
 
  const LoginScreen = ({navigation}:  Props) => {
 
-  const {signIn, errorMessage, removeError } = useContext(AuthContext);
-
-  const {email, password, onChange} = useForm({
-    email: '',
-    password: '',
-  });
-
-  useEffect(() => {
-  if (errorMessage.length === 0) return;
-  Alert.alert('Login Incorrecto', errorMessage, [{text: 'Ok', onPress: removeError}]);
-  }, [errorMessage]);
-
-  const onLogin = () => {
-    console.log({email, password});
-    Keyboard.dismiss();
-
-    signIn({correo: email, password});
-  };
   return (
       <>
       {/*Background de la pantalla */}
@@ -56,9 +35,7 @@ interface Props extends StackScreenProps<any, any>{}
                     style={loginStyles.inputField}
                     selectionColor="white"
 
-                    onChangeText={(value) => onChange(value, 'email')}
-                    value={email}
-                    onSubmitEditing={onLogin}
+                    value="prueba@gmail.com"
 
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -73,9 +50,7 @@ interface Props extends StackScreenProps<any, any>{}
                     selectionColor="white"
                     secureTextEntry={true}
 
-                    onChangeText={(value) => onChange(value, 'password')}
-                    value={password}
-                    onSubmitEditing={onLogin}
+                    value="****"
 
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -86,7 +61,7 @@ interface Props extends StackScreenProps<any, any>{}
                   <TouchableOpacity
                   activeOpacity={0.8}
                   style={loginStyles.button}
-                  onPress={onLogin}
+                  onPress={()=> navigation.replace('Tabs')}
                   >
                     <Text style={loginStyles.buttonText}>Login</Text>
                   </TouchableOpacity>

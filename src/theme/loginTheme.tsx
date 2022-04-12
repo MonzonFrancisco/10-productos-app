@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 export const Colores = {
     primary: '#5856D6',
     secundary: 'white',
+    botonGuardar: 'green',
+    botondelete: 'red',
 };
 
  export const loginStyles = StyleSheet.create({
@@ -52,10 +54,5 @@ export const Colores = {
         position: 'absolute',
         top: 25,
         left: 20,
-        borderWidth: 1,
-        borderColor: 'white',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 100,
     },
 });

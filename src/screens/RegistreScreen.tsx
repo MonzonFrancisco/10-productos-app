@@ -1,39 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View, Keyboard, Alert } from 'react-native';
+import React from 'react';
+import { KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { loginStyles } from '../theme/loginTheme';
 import { WhiteLogo } from '../components/WhiteLogo';
-import { useForm } from '../hooks/useForm';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthContext } from '../context/AuthContext';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
 interface Props extends StackScreenProps<any, any>{}
 
  const RegistreScreen = ({navigation}: Props) => {
-
-  const {signUp, errorMessage, removeError} = useContext(AuthContext);
-
-    const {email, password, name, onChange} = useForm({
-        name: '',
-        email: '',
-        password: '',
-    });
-
-    useEffect(() => {
-      if (errorMessage.length === 0) return;
-      Alert.alert('Registro Incorrecto', errorMessage, [{text: 'Ok', onPress: removeError}]);
-      }, [errorMessage]);
-
-    const onRegister = () => {
-        console.log({email, password, name});
-        Keyboard.dismiss();
-        signUp({
-          nombre: name,
-          correo: email,
-          password,
-        });
-    };
 
   return (
     <>
@@ -58,9 +33,7 @@ interface Props extends StackScreenProps<any, any>{}
                   style={loginStyles.inputField}
                   selectionColor="white"
 
-                  onChangeText={(value) => onChange(value, 'name')}
-                  value={name}
-                  onSubmitEditing={onRegister}
+                  value=""
 
                   autoCapitalize="words"
                   autoCorrect={false}
@@ -75,9 +48,7 @@ interface Props extends StackScreenProps<any, any>{}
                   style={loginStyles.inputField}
                   selectionColor="white"
 
-                  onChangeText={(value) => onChange(value, 'email')}
-                  value={email}
-                  onSubmitEditing={onRegister}
+                  value=""
 
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -92,9 +63,7 @@ interface Props extends StackScreenProps<any, any>{}
                   selectionColor="white"
                   secureTextEntry={true}
 
-                  onChangeText={(value) => onChange(value, 'password')}
-                  value={password}
-                  onSubmitEditing={onRegister}
+                  value=""
 
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -105,7 +74,7 @@ interface Props extends StackScreenProps<any, any>{}
                 <TouchableOpacity
                 activeOpacity={0.8}
                 style={loginStyles.button}
-                onPress={onRegister}
+                onPress={()=> navigation.replace('Tabs')}
                 >
                   <Text style={loginStyles.buttonText}>Crear Cuenta</Text>
                 </TouchableOpacity>
@@ -119,8 +88,8 @@ interface Props extends StackScreenProps<any, any>{}
               >
                  <Icon
                 color="white"
-                name="arrow-back-outline"
-                size={30}
+                name="arrow-back-circle-outline"
+                size={45}
                 />
               </TouchableOpacity>
 
